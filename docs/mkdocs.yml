@@ -1,0 +1,57 @@
+# sdlc-eval-kit documentation site — built by .github/workflows/pages.yml, published to GitHub Pages.
+# Local preview: uv run --no-project --with-requirements docs/requirements.txt mkdocs serve -f docs/mkdocs.yml
+site_name: sdlc-eval-kit
+site_description: Measure coding agents on fresh tasks with hidden tests — pass@1, pass^k, cost per success and a hand-labelled error analysis.
+site_url: https://pantheonzeus.github.io/sdlc-eval-kit/
+repo_url: https://github.com/pantheonzeus/sdlc-eval-kit
+repo_name: pantheonzeus/sdlc-eval-kit
+edit_uri: edit/main/docs/content/
+copyright: MIT licensed
+
+docs_dir: content
+site_dir: ../site
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: teal
+      toggle: { icon: material/weather-night, name: Dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle: { icon: material/weather-sunny, name: Light mode }
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+plugins:
+  - search
+  - privacy   # fonts are downloaded at build time: the site makes no third-party requests
+
+hooks:
+  - hooks.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc: { permalink: true }
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+
+nav:
+  - Home: index.md
+  - Method: method.md
+  - Tasks: tasks.md
+  - Reproduce: reproduce.md
