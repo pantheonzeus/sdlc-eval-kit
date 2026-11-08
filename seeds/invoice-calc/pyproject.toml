@@ -1,0 +1,9 @@
+[project]
+name = "invoice-calc"
+version = "0.1.0"
+description = "Seed repo for sdlc-eval-kit: compute and render simple invoices."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

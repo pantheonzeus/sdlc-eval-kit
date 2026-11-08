@@ -1,0 +1,9 @@
+[project]
+name = "csv-validator"
+version = "0.1.0"
+description = "Seed repo for sdlc-eval-kit: validate CSV files against a column schema."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

@@ -1,0 +1,9 @@
+[project]
+name = "units-converter"
+version = "0.1.0"
+description = "Seed repo for sdlc-eval-kit: convert lengths, masses and temperatures."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
