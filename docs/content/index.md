@@ -9,7 +9,7 @@
 - **Error analysis.** Every failure gets one label from a fixed taxonomy, assigned by a human before any automatic label is trusted.
 
 !!! warning "Status: pre-release, no results yet"
-    The tasks, scorer, statistics and report generator are built and tested, and every task is proven sound. The agent runner, which drives an open-source coding agent in a fresh container against a local and an API model, is the next step. Until it runs, there are no numbers on this site, and there won't be any invented ones.
+    The tasks, scorer, statistics and report generator are built and tested, and every task is proven sound. The agent runner drives an open-source coding agent in a fresh container against local models. API models follow once their cost is accounted. Until a full run is published, there are no numbers on this site, and there won't be any invented ones.
 
 ## What a result will look like
 

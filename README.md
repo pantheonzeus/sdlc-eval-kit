@@ -6,7 +6,7 @@
 
 **Claim (to be measured):** one run of a coding agent tells you little. The same agent on the same task, run three times, often disagrees with itself, so pass@1 overstates what you can rely on. This kit measures the gap: fresh tasks, hidden tests, k trials, cost per success, and every failure labelled by hand.
 
-> **Status: pre-release (v0.1.0). No results yet.** The tasks, scorer, statistics and report generator are in place and tested. The agent runner (mini-swe-agent in a fresh container, local and API models) comes next. Until then the table below stays empty on purpose.
+> **Status: pre-release (v0.1.0). No results yet.** The tasks, scorer, statistics, report generator and agent runner are in place and tested; the runner drives local Ollama models today. API models wait for cost accounting. Until a full run is published, the table below stays empty on purpose.
 
 ## Results
 
@@ -21,8 +21,12 @@
 ```console
 uv sync
 make check        # lint, unit tests, and the task soundness check below
-make reproduce    # arrives with the runner: 10 tasks x 2 models x k=3, under €5 API cost
+make image       # the sandbox image, needs Docker
+uv run --extra runner sdlc-eval run --model ollama_chat/qwen3-coder:30b   # local model, k=3 per task
+make reproduce    # arrives with API cost accounting: 10 tasks x 2 models x k=3, under €5 API cost
 ```
+
+Every trial runs [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) in a fresh container with no network. Its workspace is then scored in a second fresh container that the agent never touched. The trajectory and diff of every trial are kept in `runs/`.
 
 `make check` proves that every task is sound: its hidden tests **fail** on the untouched seed repo, and **pass** together with the seed's own tests on the human reference solution.
 
