@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this kit, please cite it as below."
+title: "sdlc-eval-kit: measuring coding agents on fresh tasks with hidden tests"
+type: software
+authors:
+  - given-names: Christoph
+    family-names: Nützel
+    alias: pantheonzeus
+version: 0.1.0
+repository-code: "https://github.com/pantheonzeus/sdlc-eval-kit"
+url: "https://pantheonzeus.github.io/sdlc-eval-kit/"
+license: MIT

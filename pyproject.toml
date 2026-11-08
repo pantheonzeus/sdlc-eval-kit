@@ -1,0 +1,35 @@
+[project]
+name = "sdlc-eval-kit"
+version = "0.1.0"
+description = "Measure coding agents on fresh tasks with hidden tests: pass@1, pass^k, cost per success and labelled error analysis."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=8",
+    "pyyaml>=6",
+]
+
+[project.urls]
+Homepage = "https://pantheonzeus.github.io/sdlc-eval-kit/"
+Repository = "https://github.com/pantheonzeus/sdlc-eval-kit"
+
+[project.scripts]
+sdlc-eval = "sdlc_eval_kit.cli:main"
+
+[dependency-groups]
+dev = ["ruff>=0.6"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
