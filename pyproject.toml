@@ -17,6 +17,12 @@ Repository = "https://github.com/pantheonzeus/sdlc-eval-kit"
 [project.scripts]
 sdlc-eval = "sdlc_eval_kit.cli:main"
 
+[project.optional-dependencies]
+runner = [
+    "litellm[mcp]==1.108.3",
+    "mini-swe-agent==2.4.6",
+]
+
 [dependency-groups]
 dev = ["ruff>=0.6"]
 

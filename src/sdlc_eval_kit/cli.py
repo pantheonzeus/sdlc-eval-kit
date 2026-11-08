@@ -1,10 +1,11 @@
-"""Command line: sdlc-eval {validate,check-tasks,score,errors,results}."""
+"""Command line: sdlc-eval {validate,check-tasks,run,score,errors,results}."""
 
 import argparse
 import json
 import sys
 import tempfile
 from dataclasses import asdict
+from datetime import date
 from pathlib import Path
 
 from sdlc_eval_kit.results import export_errors, load_labels, load_trials, render_results
@@ -18,6 +19,12 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("validate", help="validate every task.yaml")
     sub.add_parser("check-tasks", help="hidden tests must fail on the seed and pass on the reference")
+    run_cmd = sub.add_parser("run", help="run an agent on tasks, k trials each, append to runs/<run_id>/")
+    run_cmd.add_argument("--model", required=True, help="litellm model name, e.g. ollama_chat/qwen3-coder:30b")
+    run_cmd.add_argument("--tasks", nargs="*", default=[], help="task ids (default: all)")
+    run_cmd.add_argument("-k", type=int, default=3, help="trials per task")
+    run_cmd.add_argument("--step-limit", type=int, default=50, help="model calls per trial")
+    run_cmd.add_argument("--run-id", help="default: <date>-<model>; an existing run id resumes it")
     score_cmd = sub.add_parser("score", help="score a workspace against one task, print JSON")
     score_cmd.add_argument("task_id")
     score_cmd.add_argument("workspace", type=Path)
@@ -39,6 +46,17 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "check-tasks":
         return _check_tasks(tasks, seeds)
+    if args.command == "run":
+        from sdlc_eval_kit.runner import RunConfig, default_run_id, run
+
+        unknown = sorted(set(args.tasks) - {t.id for t in tasks})
+        if unknown:
+            print(f"unknown task: {', '.join(unknown)}", file=sys.stderr)
+            return 2
+        selected = [t for t in tasks if not args.tasks or t.id in args.tasks]
+        cfg = RunConfig(model=args.model, k=args.k, step_limit=args.step_limit)
+        run(selected, cfg, root.resolve(), args.run_id or default_run_id(args.model, date.today()))
+        return 0
     if args.command == "score":
         task = next((t for t in tasks if t.id == args.task_id), None)
         if task is None:
