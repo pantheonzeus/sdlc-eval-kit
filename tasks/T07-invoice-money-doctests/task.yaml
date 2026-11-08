@@ -1,0 +1,10 @@
+id: T07-invoice-money-doctests
+seed: invoice-calc
+archetype: docs
+evaluation: verifiable
+brief: |
+  The money helpers in `invoice/money.py` have no usage examples. Add doctest
+  examples to the docstrings of `to_money`, `round_money` and `format_eur`: at
+  least one example each, and one in `to_money` that shows a float being refused.
+  The examples must pass under `python -m doctest invoice/money.py`. Do not change
+  behaviour.

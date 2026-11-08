@@ -1,0 +1,7 @@
+id: T02-units-fahrenheit-kelvin
+seed: units-converter
+archetype: bug
+evaluation: verifiable
+brief: |
+  Bug report: `convert(32, "F", "K")` returns -273.15. 32 °F is the freezing point
+  of water, which is 273.15 K. Fix the conversion from Fahrenheit to kelvin.

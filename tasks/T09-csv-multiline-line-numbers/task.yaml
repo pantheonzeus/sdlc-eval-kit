@@ -1,0 +1,9 @@
+id: T09-csv-multiline-line-numbers
+seed: csv-validator
+archetype: bug
+evaluation: verifiable
+brief: |
+  Error line numbers are wrong when a record contains a quoted field that spans
+  several lines. Every reported `line` must be the file line on which the record
+  starts (the header is line 1). Files without multi-line fields must report the
+  same lines as today.

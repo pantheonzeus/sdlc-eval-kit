@@ -1,0 +1,9 @@
+id: T10-csv-json-output
+seed: csv-validator
+archetype: feature
+evaluation: verifiable
+brief: |
+  Add `--format {text,json}` to the command line (default `text`, output
+  unchanged). With `--format json`, print one JSON array of objects
+  {"line": <int>, "column": <str>, "message": <str>}, in the same order as the
+  text output, and print `[]` when the file is valid. Exit codes stay as they are.

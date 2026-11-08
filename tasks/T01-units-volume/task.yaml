@@ -1,0 +1,10 @@
+id: T01-units-volume
+seed: units-converter
+archetype: feature
+evaluation: verifiable
+brief: |
+  Add a volume dimension to the converter. The base unit is the litre, symbol `l`.
+  Units: `l`, `ml` (0.001 l), `cl` (0.01 l), `m3` (cubic metre, 1000 l) and `gal`
+  (US gallon, 3.785411784 l). Aliases: litre, litres, liter, liters, millilitre,
+  milliliter, gallon, gallons. Volume converts only to volume; parsing such as
+  "2.5 liters" must work like the other dimensions.

@@ -1,0 +1,13 @@
+id: T03-units-register-unit
+seed: units-converter
+archetype: refactor
+evaluation: verifiable
+brief: |
+  Temperature conversion is a chain of if-statements, and adding any unit means
+  editing several tables. Refactor so that every unit is defined by two functions,
+  `to_base` and `from_base`, which convert a value to and from its dimension's base
+  unit (length `m`, mass `kg`, temperature `K`). Expose
+  `register_unit(symbol, dimension, to_base, from_base, aliases=())` from the
+  `units` package: it adds a unit at runtime, may introduce a new dimension, and
+  raises `UnitError` when the symbol or any alias is already taken. All existing
+  public functions keep their signatures and behaviour.

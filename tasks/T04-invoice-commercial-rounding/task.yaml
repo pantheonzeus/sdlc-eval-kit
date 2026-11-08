@@ -1,0 +1,10 @@
+id: T04-invoice-commercial-rounding
+seed: invoice-calc
+archetype: bug
+evaluation: verifiable
+brief: |
+  Invoice amounts are sometimes a cent short. Our accounting uses commercial
+  rounding: every amount is rounded half-up to the cent, so 0.005 becomes 0.01,
+  and negative amounts round away from zero (-0.005 becomes -0.01). Example:
+  3 x €0.835 must be €2.51, today it is €2.50. Make all rounding in the package
+  commercial.

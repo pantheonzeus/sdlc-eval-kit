@@ -1,0 +1,14 @@
+id: T05-invoice-vat-per-line
+seed: invoice-calc
+archetype: feature
+evaluation: verifiable
+brief: |
+  Support a VAT rate per line item. `LineItem` gets an optional keyword field
+  `vat_rate: Decimal | None = None`; `None` means the invoice's `vat_rate`.
+  Add `vat_breakdown(invoice)` to the `invoice` package. It returns a dict that maps
+  each rate to a tuple (net after discount, VAT), keys in descending rate order.
+  The discount applies proportionally: a rate's net is the sum of its line nets
+  times (1 - discount_pct / 100), rounded to the cent, and its VAT is that net
+  times rate / 100, rounded to the cent. `vat_amount` becomes the sum of the
+  breakdown's VAT values; `total` stays discounted subtotal plus VAT. The text
+  rendering shows one "VAT <rate>%" row per rate, highest rate first.

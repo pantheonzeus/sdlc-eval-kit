@@ -1,0 +1,12 @@
+id: T08-csv-allowed-values
+seed: csv-validator
+archetype: feature
+evaluation: verifiable
+brief: |
+  Add an optional `allowed` list to a schema column, e.g.
+  {"name": "status", "allowed": ["active", "paused"]}. A non-empty value outside
+  the list is an error with the message "'<value>' is not one of: active, paused"
+  (values in schema order, joined by ", "). Empty values follow the existing
+  `required` rule. `Column` gets a matching keyword field
+  `allowed: tuple[str, ...] | None = None`. In the schema, `allowed` must be a
+  non-empty list of strings, otherwise loading raises `SchemaError`.
